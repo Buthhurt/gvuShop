@@ -1,4 +1,4 @@
-package by.gvu.jd2.service.command.base;
+package by.gvu.jd2.service.base;
 
 import by.gvu.jd2.bean.err.ServiceException;
 

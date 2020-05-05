@@ -1,9 +1,8 @@
-package by.gvu.jd2.service;
+package by.gvu.jd2.servlet;
 
 import by.gvu.jd2.bean.err.ServiceException;
 import by.gvu.jd2.mysql.FactoryCommand;
-import by.gvu.jd2.service.command.ErrorCommand;
-import by.gvu.jd2.service.command.base.Command;
+import by.gvu.jd2.service.base.Command;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

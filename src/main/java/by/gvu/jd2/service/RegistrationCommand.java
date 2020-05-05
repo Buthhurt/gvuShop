@@ -1,4 +1,4 @@
-package by.gvu.jd2.service.command;
+package by.gvu.jd2.service;
 
 import by.gvu.jd2.bean.Role;
 import by.gvu.jd2.bean.User;
@@ -8,7 +8,7 @@ import by.gvu.jd2.bean.err.DaoException;
 import by.gvu.jd2.bean.err.ServiceException;
 import by.gvu.jd2.mysql.FactoryMySql;
 import by.gvu.jd2.dao.base.Users;
-import by.gvu.jd2.service.command.base.Command;
+import by.gvu.jd2.service.base.Command;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.servlet.ServletException;

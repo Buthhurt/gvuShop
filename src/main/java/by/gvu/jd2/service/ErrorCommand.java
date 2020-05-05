@@ -1,7 +1,7 @@
-package by.gvu.jd2.service.command;
+package by.gvu.jd2.service;
 
 import by.gvu.jd2.bean.err.ServiceException;
-import by.gvu.jd2.service.command.base.Command;
+import by.gvu.jd2.service.base.Command;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

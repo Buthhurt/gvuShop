@@ -7,7 +7,7 @@
 
     <servlet>
         <servlet-name>Controller</servlet-name>
-        <servlet-class>by.gvu.jd2.service.Controller</servlet-class>
+        <servlet-class>by.gvu.jd2.servlet.Controller</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
