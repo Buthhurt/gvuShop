@@ -1,0 +1,89 @@
+.main, .main-frame, .header, .menu, .content, .footer { height: 100%; }
+
+.main{
+
+}
+
+.main-frame {
+    display: grid;
+    grid-template-columns: 0.3fr 1.7fr;
+    grid-template-rows: 0.3fr 2.4fr 0.3fr;
+    grid-template-areas: "main-header main-header" "main-menu main-content" "main-footer main-footer";
+}
+
+.main-header {
+    grid-area: main-header;
+}
+
+.main-menu {
+    grid-area: main-menu;
+}
+
+.main-content {
+    grid-area: main-content;
+}
+
+.main-footer {
+    grid-area: main-footer;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 1.6fr 0.4fr;
+    grid-template-rows: 1.0fr 1.0fr;
+    grid-template-areas: "header-info header-date" "header-info header-action";
+}
+
+.header-info {
+    grid-area: header-info;
+}
+
+.header-date {
+    grid-area: header-date;
+}
+
+.header-action {
+    grid-area: header-action;
+}
+
+.menu {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1.0fr;
+    grid-template-rows: 0.1fr 1.9fr;
+    grid-template-areas: "content-path" "content-view";
+}
+
+.content-path {
+    grid-area: content-path;
+}
+
+.content-view {
+    grid-area: content-view;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.footer {
+    display: grid;
+    grid-template-columns: 1.6fr 0.4fr;
+    grid-template-rows: 1.0fr;
+    grid-template-areas: "footer-info footer-links";
+}
+
+.footer-info {
+    grid-area: footer-info;
+}
+
+.footer-links {
+    grid-area: footer-links;
+}
+
+.content-path, .content-view, .footer-info, .footer-links, .header-info, .header-date, .header-action, .main-menu {
+    padding: 5px;
+    border: 1px solid black;
+}
