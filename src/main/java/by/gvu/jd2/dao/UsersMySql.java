@@ -5,6 +5,7 @@ import by.gvu.jd2.bean.err.DaoException;
 import by.gvu.jd2.dao.base.Users;
 import by.gvu.jd2.dao.base.pool.ConnectionPool;
 import by.gvu.jd2.dao.base.pool.ConnectionPoolException;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -51,13 +52,30 @@ public class UsersMySql implements Users {
     }
 
     @Override
-    public UserForm loginUser(String userLogin, String userPassword) throws DaoException {
+    public UserToken loginUser(String userLogin, String userPassword) throws DaoException {
         return loginUser(userLogin, userPassword, "");
     }
 
     @Override
-    public UserForm loginUser(String userLogin, String userPassword, String sessionId) throws DaoException {
-        return null;
+    public UserToken loginUser(String userLogin, String userPassword, String sessionId) throws DaoException {
+
+        User user = new User();
+        user.setLogin(userLogin);
+
+        List<User> list = findUsers(user);
+
+        if (list.size()!=1)
+            throw new DaoException("Ошибка поска пользователя в базе данных");
+
+        String pswMd5 = DigestUtils.md5Hex(userPassword);
+        String pswSha3 = DigestUtils.sha3_224Hex(userPassword);
+
+        if (!list.get(0).getPsw_md5().equals(pswMd5) || !list.get(0).getPsw_sha3().equals(pswSha3))
+            throw new DaoException("Не верно аказан пароль");
+
+        UserToken result = new UserToken(list.get(0).getId(), list.get(0).getnName());
+
+        return result;
     }
 
     @Override

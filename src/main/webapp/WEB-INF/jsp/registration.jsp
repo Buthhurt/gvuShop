@@ -13,7 +13,7 @@
 
     UserForm userFormValues = null;
     if (request.getAttribute("RegistrationForm")!=null)
-        userForm = (UserForm)request.getAttribute("RegistrationForm");
+        userFormValues = (UserForm)request.getAttribute("RegistrationForm");
 %>
 <div class="container">
     <div class="row justify-content-center">
@@ -91,7 +91,7 @@
                             <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
                         </div>
                         <div class="form-group ">
-                            <a type="button" class="btn btn-primary btn-dark btn-block login-button" href="MainPage">Назад</a>
+                            <a type="button" class="btn btn-primary btn-dark btn-block login-button" href="/gvuShop">Назад</a>
                         </div>
 
                         <input type="hidden" name="command" value="registration"/>
