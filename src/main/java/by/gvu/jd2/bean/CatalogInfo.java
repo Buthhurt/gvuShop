@@ -1,8 +1,9 @@
 package by.gvu.jd2.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CatalogInfo {
+public class CatalogInfo implements Serializable {
     private int id = 0;
     private int level = 0;
     private String name = null;
@@ -78,5 +79,34 @@ public class CatalogInfo {
 
     public void setSubMenuItems(List<CatalogInfo> subMenuItems) {
         this.subMenuItems = subMenuItems;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CatalogInfo)) return false;
+
+        CatalogInfo that = (CatalogInfo) o;
+
+        if (id != that.id) return false;
+        if (level != that.level) return false;
+        if (isMenu != that.isMenu) return false;
+        if (isOpen != that.isOpen) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (groupAttribute != null ? !groupAttribute.equals(that.groupAttribute) : that.groupAttribute != null)
+            return false;
+        return subMenuItems != null ? subMenuItems.equals(that.subMenuItems) : that.subMenuItems == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + level;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (isMenu ? 1 : 0);
+        result = 31 * result + (groupAttribute != null ? groupAttribute.hashCode() : 0);
+        result = 31 * result + (isOpen ? 1 : 0);
+        result = 31 * result + (subMenuItems != null ? subMenuItems.hashCode() : 0);
+        return result;
     }
 }

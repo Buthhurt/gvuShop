@@ -1,8 +1,9 @@
 package by.gvu.jd2.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Product {
+public class Product implements Serializable {
     private int id;
     private CatalogInfo catalog = null;
     private String name = null;
@@ -98,5 +99,41 @@ public class Product {
 
     public void setPriceDiscount(double priceDiscount) {
         this.priceDiscount = priceDiscount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+
+        Product product = (Product) o;
+
+        if (id != product.id) return false;
+        if (Double.compare(product.price, price) != 0) return false;
+        if (count != product.count) return false;
+        if (isActive != product.isActive) return false;
+        if (Double.compare(product.priceDiscount, priceDiscount) != 0) return false;
+        if (catalog != null ? !catalog.equals(product.catalog) : product.catalog != null) return false;
+        if (name != null ? !name.equals(product.name) : product.name != null) return false;
+        if (attributes != null ? !attributes.equals(product.attributes) : product.attributes != null) return false;
+        return discount != null ? discount.equals(product.discount) : product.discount == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = id;
+        result = 31 * result + (catalog != null ? catalog.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + count;
+        result = 31 * result + (isActive ? 1 : 0);
+        result = 31 * result + (attributes != null ? attributes.hashCode() : 0);
+        result = 31 * result + (discount != null ? discount.hashCode() : 0);
+        temp = Double.doubleToLongBits(priceDiscount);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 }

@@ -1,6 +1,8 @@
 package by.gvu.jd2.bean;
 
-public class City {
+import java.io.Serializable;
+
+public class City implements Serializable {
     private int id;
     private Country country = null;
     private Region region = null;
@@ -46,5 +48,27 @@ public class City {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof City)) return false;
+
+        City city = (City) o;
+
+        if (id != city.id) return false;
+        if (country != null ? !country.equals(city.country) : city.country != null) return false;
+        if (region != null ? !region.equals(city.region) : city.region != null) return false;
+        return name != null ? name.equals(city.name) : city.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (country != null ? country.hashCode() : 0);
+        result = 31 * result + (region != null ? region.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
     }
 }

@@ -1,8 +1,9 @@
 package by.gvu.jd2.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Role {
+public class Role implements Serializable {
     private int id;
     private String name = null;
     private List<Grant> grantList = null;
@@ -42,5 +43,25 @@ public class Role {
 
     public void setGrantList(List<Grant> grantList) {
         this.grantList = grantList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Role)) return false;
+
+        Role role = (Role) o;
+
+        if (id != role.id) return false;
+        if (name != null ? !name.equals(role.name) : role.name != null) return false;
+        return grantList != null ? grantList.equals(role.grantList) : role.grantList == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (grantList != null ? grantList.hashCode() : 0);
+        return result;
     }
 }

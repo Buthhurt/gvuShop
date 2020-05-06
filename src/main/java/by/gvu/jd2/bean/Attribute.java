@@ -1,8 +1,9 @@
 package by.gvu.jd2.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Attribute {
+public class Attribute implements Serializable {
     private int id;
     private String name = null;
     private DataType dataType = null;
@@ -65,5 +66,31 @@ public class Attribute {
 
     public void setValues(List<AttributeValue> values) {
         this.values = values;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Attribute)) return false;
+
+        Attribute attribute = (Attribute) o;
+
+        if (id != attribute.id) return false;
+        if (isRequired != attribute.isRequired) return false;
+        if (name != null ? !name.equals(attribute.name) : attribute.name != null) return false;
+        if (dataType != null ? !dataType.equals(attribute.dataType) : attribute.dataType != null) return false;
+        if (unit != null ? !unit.equals(attribute.unit) : attribute.unit != null) return false;
+        return values != null ? values.equals(attribute.values) : attribute.values == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (dataType != null ? dataType.hashCode() : 0);
+        result = 31 * result + (unit != null ? unit.hashCode() : 0);
+        result = 31 * result + (isRequired ? 1 : 0);
+        result = 31 * result + (values != null ? values.hashCode() : 0);
+        return result;
     }
 }

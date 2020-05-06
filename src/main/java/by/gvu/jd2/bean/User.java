@@ -1,8 +1,9 @@
 package by.gvu.jd2.bean;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class User {
+public class User implements Serializable {
     private int id = -1;
     private String login = null;
     private String psw_sha3 = null;
@@ -134,4 +135,39 @@ public class User {
                 birthday == null;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+
+        User user = (User) o;
+
+        if (id != user.id) return false;
+        if (sexId != user.sexId) return false;
+        if (login != null ? !login.equals(user.login) : user.login != null) return false;
+        if (psw_sha3 != null ? !psw_sha3.equals(user.psw_sha3) : user.psw_sha3 != null) return false;
+        if (psw_md5 != null ? !psw_md5.equals(user.psw_md5) : user.psw_md5 != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (role != null ? !role.equals(user.role) : user.role != null) return false;
+        if (fName != null ? !fName.equals(user.fName) : user.fName != null) return false;
+        if (sName != null ? !sName.equals(user.sName) : user.sName != null) return false;
+        if (nName != null ? !nName.equals(user.nName) : user.nName != null) return false;
+        return birthday != null ? birthday.equals(user.birthday) : user.birthday == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (login != null ? login.hashCode() : 0);
+        result = 31 * result + (psw_sha3 != null ? psw_sha3.hashCode() : 0);
+        result = 31 * result + (psw_md5 != null ? psw_md5.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (role != null ? role.hashCode() : 0);
+        result = 31 * result + (fName != null ? fName.hashCode() : 0);
+        result = 31 * result + (sName != null ? sName.hashCode() : 0);
+        result = 31 * result + (nName != null ? nName.hashCode() : 0);
+        result = 31 * result + sexId;
+        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
+        return result;
+    }
 }

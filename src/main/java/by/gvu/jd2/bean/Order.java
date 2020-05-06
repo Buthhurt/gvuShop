@@ -1,8 +1,9 @@
 package by.gvu.jd2.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Order {
+public class Order implements Serializable {
     private int id;
     private UserForm user = null;
     private List<Product> productList = null;
@@ -88,5 +89,36 @@ public class Order {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order)) return false;
+
+        Order order = (Order) o;
+
+        if (id != order.id) return false;
+        if (status != order.status) return false;
+        if (user != null ? !user.equals(order.user) : order.user != null) return false;
+        if (productList != null ? !productList.equals(order.productList) : order.productList != null) return false;
+        if (paymentMethod != null ? !paymentMethod.equals(order.paymentMethod) : order.paymentMethod != null)
+            return false;
+        if (address != null ? !address.equals(order.address) : order.address != null) return false;
+        if (comment != null ? !comment.equals(order.comment) : order.comment != null) return false;
+        return operator != null ? operator.equals(order.operator) : order.operator == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (productList != null ? productList.hashCode() : 0);
+        result = 31 * result + (paymentMethod != null ? paymentMethod.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (comment != null ? comment.hashCode() : 0);
+        result = 31 * result + (operator != null ? operator.hashCode() : 0);
+        result = 31 * result + status;
+        return result;
     }
 }

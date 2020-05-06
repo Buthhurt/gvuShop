@@ -1,6 +1,8 @@
 package by.gvu.jd2.bean;
 
-public class PaymentMethod {
+import java.io.Serializable;
+
+public class PaymentMethod implements Serializable {
     private int id;
     private UserForm user = null;
     private String cardNumber = null;
@@ -76,5 +78,35 @@ public class PaymentMethod {
 
     public void setUserHistory(UserForm userHistory) {
         this.userHistory = userHistory;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PaymentMethod)) return false;
+
+        PaymentMethod that = (PaymentMethod) o;
+
+        if (id != that.id) return false;
+        if (cardCvs != that.cardCvs) return false;
+        if (user != null ? !user.equals(that.user) : that.user != null) return false;
+        if (cardNumber != null ? !cardNumber.equals(that.cardNumber) : that.cardNumber != null) return false;
+        if (cardFirstName != null ? !cardFirstName.equals(that.cardFirstName) : that.cardFirstName != null)
+            return false;
+        if (cardSecondName != null ? !cardSecondName.equals(that.cardSecondName) : that.cardSecondName != null)
+            return false;
+        return userHistory != null ? userHistory.equals(that.userHistory) : that.userHistory == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (cardNumber != null ? cardNumber.hashCode() : 0);
+        result = 31 * result + (cardFirstName != null ? cardFirstName.hashCode() : 0);
+        result = 31 * result + (cardSecondName != null ? cardSecondName.hashCode() : 0);
+        result = 31 * result + cardCvs;
+        result = 31 * result + (userHistory != null ? userHistory.hashCode() : 0);
+        return result;
     }
 }
