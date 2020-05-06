@@ -1,7 +1,6 @@
 package by.gvu.jd2.bean;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 public class UserToken implements Serializable {
     private int id = -1;
