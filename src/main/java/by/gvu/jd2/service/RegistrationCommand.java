@@ -121,7 +121,7 @@ public class RegistrationCommand implements Command {
     @Override
     public void forwardSuccess(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         try {
-            request.getRequestDispatcher("").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);
         } catch (ServletException | IOException e){
             e.printStackTrace();
             throw new ServiceException("Вообще фигня какая-то случилась. Не смогли пойти на другую страницу", e);
